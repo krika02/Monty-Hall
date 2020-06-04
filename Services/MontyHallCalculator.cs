@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Monty_Hall.Models;
 
-namespace Monty_Hall.Helpers
+namespace Monty_Hall.Services
 {
     public class MontyHallCalculator : IMontyHallCalculator
     {
@@ -57,7 +57,7 @@ namespace Monty_Hall.Helpers
 
             chosenDoor = changeDoor ? 
                 doors.First(n => n.DoorNumber != montyDoor.DoorNumber && n.DoorNumber != chosenDoor).DoorNumber // We decide to change door, select the door that Monty didn't select and the one that we did not choose first
-                : chosenDoor; // We decide to keep with or first initial door
+                : chosenDoor; // We decide to keep with our first initial door
 
             return doors.First(n => n.DoorNumber == chosenDoor).WinningOption; // Return result
         }

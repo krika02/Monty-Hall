@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MonthyHallPic from './monthy-hall-host.jpg';
+import MontyHallPic from './monty-hall-host.jpg';
 import Calculator from '../calculator/Calculator';
 
 export class Home extends Component {
@@ -7,8 +7,8 @@ export class Home extends Component {
     render() {
         return (
             <div>
-                <h1>Welcome to the Monthy Hall simulator</h1>
-                <img src={MonthyHallPic} alt="monthy hall" />
+                <h1>Welcome to the Monty Hall simulator</h1>
+                <img src={MontyHallPic} alt="monty hall" />
                 <Calculator />
             </div>
         );

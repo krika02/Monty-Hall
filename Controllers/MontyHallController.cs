@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Monty_Hall.Helpers;
+using Monty_Hall.Services;
 using Monty_Hall.Models;
 
 namespace Monty_Hall.Controllers
@@ -10,6 +10,13 @@ namespace Monty_Hall.Controllers
     [ApiController]
     public class MontyHallController : ControllerBase
     {
+        private readonly IMontyHallCalculator _montyHallCalculator;
+
+        public MontyHallController(IMontyHallCalculator montyHallCalculator)
+        {
+            _montyHallCalculator = montyHallCalculator;
+        }
+
         /// <summary>
         /// Handel the Monty Hall-calculation request
         /// </summary>
@@ -19,8 +26,7 @@ namespace Monty_Hall.Controllers
         [Route("monthyHall/calculate")]
         public decimal Calculate(MontyHallCalculationRequestModel model)
         {
-            var montyHallCalculator = new MontyHallCalculator(new DoorCreator());
-            var result = montyHallCalculator.Calculate(model);
+            var result = _montyHallCalculator.Calculate(model);
 
             return result;
         }

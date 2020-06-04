@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Monty_Hall.Helpers
+namespace Monty_Hall.Services
 {
     public class DoorCreator : IDoorCreator
     {
