@@ -23,7 +23,7 @@ namespace Monty_Hall_UnitTests.Tests
         [Test]
         public void Doors_Correct_Number()
         {
-            var doors = new DoorCreator().GenerateRandomDoors();
+            var doors = _doorCreator.GenerateRandomDoors();
 
             Assert.IsTrue(doors.Count == 3);
         }
