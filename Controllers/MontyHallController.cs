@@ -19,7 +19,7 @@ namespace Monty_Hall.Controllers
         [Route("monthyHall/calculate")]
         public decimal Calculate(MontyHallCalculationRequestModel model)
         {
-            var montyHallCalculator = new MontyHallCalculator();
+            var montyHallCalculator = new MontyHallCalculator(new DoorCreator());
             var result = montyHallCalculator.Calculate(model);
 
             return result;

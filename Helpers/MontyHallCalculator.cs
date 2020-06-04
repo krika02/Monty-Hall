@@ -6,13 +6,13 @@ using Monty_Hall.Models;
 
 namespace Monty_Hall.Helpers
 {
-    public class MontyHallCalculator
+    public class MontyHallCalculator : IMontyHallCalculator
     {
-        private readonly Random _random;
+        private readonly IDoorCreator _doorCreator;
 
-        public MontyHallCalculator()
+        public MontyHallCalculator(IDoorCreator doorCreator)
         {
-            _random = new Random();
+            _doorCreator = doorCreator;
         }
 
         /// <summary>
@@ -41,9 +41,9 @@ namespace Monty_Hall.Helpers
         /// <param name="chosenDoor">Chosen door</param>
         /// <param name="changeDoor">Change door after "goat" door X has been revealed?</param>
         /// <returns></returns>
-        private bool Calculate(int chosenDoor, bool changeDoor)
+        public bool Calculate(int chosenDoor, bool changeDoor)
         {
-            var doors = GenerateRandomDoors();
+            var doors = _doorCreator.GenerateRandomDoors();
 
             // Pick some random door (The door Monty hall picks where there is a "goat")
             // Ofcourse this door can't be the same as the one the user picked 
@@ -60,27 +60,6 @@ namespace Monty_Hall.Helpers
                 : chosenDoor; // We decide to keep with or first initial door
 
             return doors.First(n => n.DoorNumber == chosenDoor).WinningOption; // Return result
-        }
-
-        /// <summary>
-        /// Generate some random doors.
-        /// </summary>
-        /// <returns>A list of 3 bools. True means the "car = winning option", false means a "goat = loosing option"</returns>
-        private List<DoorModel> GenerateRandomDoors()
-        {
-            var rightDoor = _random.Next(1, 4);
-            var doors = new List<DoorModel>();
-
-            for (int i = 1; i < 4; i++)
-            {
-                doors.Add(new DoorModel
-                {
-                    DoorNumber = i,
-                    WinningOption = rightDoor == i
-                });
-            }
-
-            return doors;
         }
     }
 }
